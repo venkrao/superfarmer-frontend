@@ -1,0 +1,11 @@
+{"web":{"client_id":"	","project_id":"superfarmer-220110","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://www.googleapis.com/oauth2/v3/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":"pRPXUi0ZoALv8bTEeMJifHaL","redirect_uris":["http://localhost:4200","http://127.0.0.1:8000"],"javascript_origins":["http://127.0.0.1:8000","http://localhost:4200"]}}
+
+
+ curl -X POST -d "grant_type=convert_token&client_id=V7Z9psJjWaKgY76n2dpiqPtQ0cxHkPjKNb2s1ZsV&client_secret=29iZOKJOJu2bEy0VPVtCErduVqNLIetLRA7PQ0bOHyBqoLa5ui9UgEQ8U00hDwArZDpAZ9tt9hNlGSZ1BqD21PkyqXEZ9xmFSP4LGrspROxkYtgVWmsFoLH3gQVofh15&backend=google-plus&token="ya29.Glw-BvsFS2xi4Mbv5MFbTDXVB_yVLDIR6tXDg6GKorKiryG32idmRd_wNL5wtB0jaHOOxDeTPjAWy34e8dGlxfGQG09cSmi9clo2DO-hj960CxZtNlX_A9qnOKI6zw"" http://localhost:8000/auth/convert-token
+
+ 
+convert_token:
+
+{"access_token":"ST81WLnN2wWvupFdmiGUEQ4ilFV849","expires_in":36000,"token_type":"Bearer","scope":"read write","refresh_token":"zTLYOsVbcVVj8XBvY7MwgAAe283RKr"}
+
+
