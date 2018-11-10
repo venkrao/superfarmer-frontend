@@ -25,17 +25,11 @@ import * as moment from "moment";
   public access_token: any;
   public registration_pending: string;
   public user_id:any;
+  public username:string;
 
   // error messages received from the login attempt
   public errors: any = [];
   constructor(private http: HttpClient) {
-    this.httpOptions = {
-          headers: new HttpHeaders( {
-            //'Content-Type': 'application/json',
-            'Authorization': this.getAccessToken(),
-          }
-        )
-    };
   }
 
   // Send google/fb token to django and get back a django token,
@@ -64,18 +58,20 @@ import * as moment from "moment";
 
 
   public setLocalStorageUserdata(userData, socialPlatform) {
+    console.log(userData)
+    console.log(JSON.stringify(userData))
     if (socialPlatform  == "google") {
-      localStorage.setItem("username", userData.name);
+      this.username = userData.name
+      localStorage.setItem("username", userData.name)
+      localStorage.setItem("id", userData.id)
+      localStorage.setItem("image", userData.image)
     }
+
   }
 
   public setLocalStorageSessionData() {
     localStorage.setItem('access_token', this.access_token);
     localStorage.setItem('refresh_token', this.refresh_token);
-    localStorage.setItem('registration_pending', this.registration_pending);
-    localStorage.setItem('user_id', this.user_id);
-    const expiresIn = moment().add(this.expires_in, 'second');
-    localStorage.setItem("expires_at", JSON.stringify(expiresIn.valueOf()));
   }
 
   public isLoggedIn() {
@@ -89,12 +85,7 @@ import * as moment from "moment";
   }
 
   public registrationPending() {
-    if (localStorage.getItem("registration_pending") == "true") {
-       console.log("registration pending ..")
-       return true;
-    } else {
-       return false;
-    }
+      return true;
   }
 
   public getUsername() {

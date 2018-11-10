@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service'
 import { RestRequestService } from '../rest-request.service'
+import {
+   Router,
+
+} from '@angular/router';
 
 @Component({
   selector: 'app-user-registration',
@@ -9,6 +13,7 @@ import { RestRequestService } from '../rest-request.service'
 })
 export class UserRegistrationComponent implements OnInit {
   constructor(private userService: UserService,
+    private router: Router,
     private restRequestService:RestRequestService) {
   }
 
@@ -46,6 +51,11 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("nginit in user-registeration.")
+    if (this.userService.getAccessToken() == undefined ) {
+      console.log("no token.")
+      this.router.navigate(["/login"]);
+    }
   }
 
 }

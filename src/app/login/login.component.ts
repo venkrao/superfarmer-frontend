@@ -54,58 +54,62 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  // If a logged in user clicks backs, and ends up on the /login page
-  // then, send him back to where he came from, coz he's already logged in.
-
   private backendName:string;
+
+  public convertTokenAndLogin(payloadForLogin) {
+    this.restRequestService.postRequest(undefined, payloadForLogin, "converttoken").subscribe(
+      convertedToken => {
+        console.log(convertedToken)
+        localStorage.setItem('access_token', convertedToken["access_token"])
+        this.restRequestService.postRequest(undefined, undefined, "userauth").subscribe(
+          response => {
+            console.log(response)
+            const response_json = JSON.parse(JSON.stringify(response))
+            if (response_json["registration_pending"] == true) {
+              this.router.navigate(["/register"]);
+            } else {
+              this.router.navigate(["/home"]);
+            }
+          }
+        )
+      },
+      convertTokenFailed => {
+        console.log("failed to convert token " + convertTokenFailed)
+      }
+    )
+  }
 
   public socialSignIn(socialPlatform : string) {
     let socialPlatformProvider;
     if(socialPlatform == "facebook"){
       socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-    }else if(socialPlatform == "google"){
+    } else if(socialPlatform == "google"){
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
       this.backendName = "google-plus"
     }
 
     this.socialAuthService.signIn(socialPlatformProvider).then(
-      (userData) => {
-        console.log(socialPlatform+" sign in data : " , userData);
-        const userDataJson = this.generateConvertTokenPayload(userData)
-
-        this.restRequestService.postRequest(undefined, userDataJson, "converttoken").subscribe(
-          convertedToken => {
-            console.log(convertedToken)
-            localStorage.setItem('access_token', convertedToken["access_token"])
-            this.restRequestService.postRequest(undefined, undefined, "playground").subscribe(
-              response => {
-                console.log(response)
-              }
-            )
-            // TODO: START FROM HERE: REGISTER USER..
-          },
-          convertTokenFailed => {
-            console.log("failed to convert token " + convertTokenFailed)
-          }
-        )
+      (socialAuthUserdata) => {
+        console.log(socialPlatform+" sign in data : " , socialAuthUserdata);
+        const payloadForLogin = this.composeConvertTokenPayload(socialAuthUserdata)
+        // Save some of the social data to localstorage
+        this.userService.setLocalStorageUserdata(socialAuthUserdata, socialPlatform)
+        // Now, convert the social token to a backend token, and login.
+        this.convertTokenAndLogin(payloadForLogin)
       }
     );
   }
 
   // Read the external token(google/fb), and compose request param to drf.
-  public generateConvertTokenPayload(socialAuthUserdata) {
+  public composeConvertTokenPayload(socialAuthUserdata) {
       const convertTokenPayload = {}
       const socialAuthUserdataJson = JSON.parse(JSON.stringify(socialAuthUserdata))
-
-//grant_type=convert_token&client_id=<client_id>&client_secret=<client_secret>&backend=<backend>&token=<backend_token>
-
+      //grant_type=convert_token&client_id=<client_id>&client_secret=<client_secret>&backend=<backend>&token=<backend_token>
       convertTokenPayload["grant_type"] = "convert_token"
       convertTokenPayload["client_id"] = "bMQ62V8htC2oAgJU6KeLzbMQrvzS2ONY8RWwsypk"
       convertTokenPayload["client_secret"] = "oeYCcZHD0fLL6HmMtskpOgSpGZMCPXuIUjW5hiZchWHvddu2b6f9mTSlGQRmE4MybFfuCUwS7WDjehjF3Cr3v7DPm3soV10oE4KbbTdHVWsIuD8flzPNQNh4v2uQNeAR"
       convertTokenPayload["backend"] = this.backendName
       convertTokenPayload["token"] = socialAuthUserdataJson["token"]
-
-      console.log("returning " + socialAuthUserdataJson.token)
 
       return convertTokenPayload
   }

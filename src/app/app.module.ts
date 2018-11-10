@@ -47,8 +47,6 @@ export function getAuthServiceConfigs() {
     HomeComponent,
     UserRegistrationComponent,
     CreateListingComponent,
-
-
   ],
   imports: [
     BrowserModule,

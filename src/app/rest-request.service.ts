@@ -8,17 +8,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class RestRequestService {
 
   constructor(private userService:UserService, private http: HttpClient) {
-
   }
 
   endpoints = {
     "usercontactinfo": "http://127.0.0.1:8000/userprofile/",
     "userauth": "http://127.0.0.1:8000/userauth",
     "converttoken": "http://127.0.0.1:8000/auth/convert-token",
-    "playground": "http://127.0.0.1:8000/playgroundview",
+    "userprofile": "http://127.0.0.1:8000/userprofile",
   }
-
-  private httpRequestHeaders:any;
 
   public postRequest(httpRequestHeaders:any, httpRequestData:any, httpEndPoint:any) {
 
@@ -26,8 +23,8 @@ export class RestRequestService {
     //httpRequestData["token"] = this.userService.getAccessToken()
     //httpRequestData["user_id"] = this.userService.getUserId()
     //httpRequestData["access_token"] = this.userService.getAccessToken()
-   console.log("composed request headers " + JSON.stringify(this.httpRequestHeaders))
+   console.log("composed request headers " + JSON.stringify(httpRequestHeaders))
    return this.http.post(this.endpoints[httpEndPoint],
-   httpRequestData, this.httpRequestHeaders)
+   httpRequestData, httpRequestHeaders)
   }
 }
