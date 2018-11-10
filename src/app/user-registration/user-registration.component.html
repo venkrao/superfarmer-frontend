@@ -1,0 +1,82 @@
+<div class="container">
+  Welcome {{userService.getUsername()}}!<br />
+  Please register with us to proceed.
+
+  <form #userRegistrationForm="ngForm" id="userRegistrationForm">
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input
+        required
+        ngModel
+        name="address"
+        type="text"
+        id="address"
+        class="form-control"
+        placeholder="House number, street etc"
+        #address="ngModel"
+        (change)="log(what)">
+        <div class="alert alert-danger" *ngIf="address.touched && !address.valid">
+           Address is required.
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="city">City</label>
+      <input
+        required
+        ngModel
+        type="text"  id="city" name="city" class="form-control" placeholder="City"
+        #city="ngModel">
+        <div class="alert alert-danger" *ngIf="city.touched && !city.valid">
+           City is required.
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="state">State</label>
+      <input
+      required
+      ngModel
+      type="text" id="state" name="state" class="form-control"
+      #state="ngModel"
+      placeholder="State">
+      <div class="alert alert-danger" *ngIf="state.touched && !state.valid">
+         State is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="country">Country</label>
+      <input
+      required
+      ngModel
+      type="text" id="country" name="country" class="form-control"
+      #country="ngModel"
+      placeholder="Country">
+      <div class="alert alert-danger" *ngIf="country.touched && !country.valid">
+         Country is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phone_primary">Phone number(Primary)</label>
+      <input
+        required
+        ngModel
+        type="text" id="phone_primary" name="phone_primary"
+        class="form-control" placeholder="Phone number"
+        #phone_primary="ngModel">
+        <div class="alert alert-danger" *ngIf="phone_primary.touched && !phone_primary.valid">
+           Telephone number is required.
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phone_number_secondary">Phone number(Secondary)</label>
+      <input type="text" id="phone_number_secondary" name="phone_number_secondary" class="form-control" placeholder="Phone number, secondary"/>
+    </div>
+
+ <button (click)="onSubmit(userRegistrationForm)" class="btn btn-succes" type="submit" [disabled]="!userRegistrationForm.form.valid">Submit</button>
+ </form>
+ <p *ngIf="results">Result: {{ results }}</p>
+ <p *ngIf="error">Error: {{ error }}</p>
+</div>

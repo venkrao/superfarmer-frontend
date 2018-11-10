@@ -4,6 +4,9 @@ import { HttpModule } from '@angular/http';
 
 import { HttpClient,  HttpHeaders, HttpClientModule } from '@angular/common/http';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.service';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -16,6 +19,8 @@ import {
     FacebookLoginProvider,
 } from "angular5-social-login";
 import { HomeComponent } from './home/home.component';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { CreateListingComponent } from './create-listing/create-listing.component';
 
 
 // Configs
@@ -40,6 +45,8 @@ export function getAuthServiceConfigs() {
     AppComponent,
     LoginComponent,
     HomeComponent,
+    UserRegistrationComponent,
+    CreateListingComponent,
 
 
   ],
@@ -60,7 +67,12 @@ export function getAuthServiceConfigs() {
     {
      provide: AuthServiceConfig,
      useFactory: getAuthServiceConfigs
-   }
+   },
+   {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
