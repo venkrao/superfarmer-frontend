@@ -20,7 +20,10 @@ import {
 } from "angular5-social-login";
 import { HomeComponent } from './home/home.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
-import { CreateListingComponent } from './create-listing/create-listing.component';
+import { ListingsComponent } from './listings/listings.component';
+import { ListingDetailComponent } from './listing-detail/listing-detail.component';
+import { MeComponent } from './me/me.component';
+import { MyListingsComponent } from './my-listings/my-listings.component';
 
 
 // Configs
@@ -46,7 +49,10 @@ export function getAuthServiceConfigs() {
     LoginComponent,
     HomeComponent,
     UserRegistrationComponent,
-    CreateListingComponent,
+    ListingsComponent,
+    ListingDetailComponent,
+    MeComponent,
+    MyListingsComponent,
   ],
   imports: [
     BrowserModule,

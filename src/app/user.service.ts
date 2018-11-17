@@ -66,7 +66,11 @@ import * as moment from "moment";
       localStorage.setItem("id", userData.id)
       localStorage.setItem("image", userData.image)
     }
+  }
 
+  public clearLocalStorage() {
+    localStorage.clear()
+    return true
   }
 
   public setLocalStorageSessionData() {

@@ -14,8 +14,10 @@ export class AuthInterceptor implements HttpInterceptor {
           Authorization: `Bearer ${localStorage.getItem('access_token')}`
         }
       });
+    } else {
+      console.log("interceptor: access token not found.")
     }
-  
+
     return next.handle(req);
   }
 }
