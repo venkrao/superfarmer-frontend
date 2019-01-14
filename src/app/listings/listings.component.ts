@@ -6,6 +6,8 @@ import {
 } from '@angular/router';
 import { UserService } from '../user.service'
 
+import { HttpResponseParserService } from '../http-response-parser.service'
+
 @Component({
   selector: 'app-listing',
   templateUrl: './listings.component.html',
@@ -16,6 +18,7 @@ export class ListingsComponent implements OnInit {
   constructor(private restRequestService:RestRequestService,
     private router:Router,
     private userService: UserService,
+    private httpResponseParser: HttpResponseParserService
   ) { }
 
   private showListingForm = false;
@@ -35,11 +38,11 @@ listing_id
       formData.append("measuring_unit", createAdForm.controls['measuring_unit'].value)
       formData.append("quantity", createAdForm.controls['quantity'].value)
       formData.append("image", this.item_picture, this.item_picture.name)
+      formData.append("price", createAdForm.controls['price'].value)
 
 
     this.restRequestService.postRequest(undefined, formData, "inventory").subscribe(
         response => {
-          console.log(response)
           this.listing_id = response["inventory_id"]
         },
         failure => {
@@ -69,6 +72,12 @@ listing_id
         this.allListings = listings
       },
       errors => {
+        if (this.httpResponseParser.isForbiddenResponse(errors) == 403) {
+          alert("Invalid session. Please login again.")
+          this.userService.clearLocalStorage()
+          this.router.navigate(["/login"]);
+        }
+
         console.log(errors)
       }
     )

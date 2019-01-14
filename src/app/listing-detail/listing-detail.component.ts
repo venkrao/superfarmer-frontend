@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {
    Router,
    ActivatedRoute,
-   ParamMap
+
 } from '@angular/router';
 import { UserService } from '../user.service'
 import { RestRequestService } from '../rest-request.service'
-import { switchMap,  } from 'rxjs/operators';
+
+import { HttpResponseParserService } from '../http-response-parser.service'
 
 @Component({
   selector: 'app-listing-detail',
@@ -18,7 +19,9 @@ export class ListingDetailComponent implements OnInit {
   constructor(private restRequestService:RestRequestService,
     private router:Router,
     private activatedRoute: ActivatedRoute,
-    private userService: UserService) { }
+    private userService: UserService,
+    private httpResponseParser: HttpResponseParserService
+  ) { }
 
   // input
   listing_id:any;
@@ -64,7 +67,14 @@ inventory_item_id
 
           console.log(response)
       },
-      error => console.log(error)
+      error => {
+        console.log(error)
+        if (this.httpResponseParser.isForbiddenResponse(error) == 403) {
+          alert("Invalid session. Please login again.")
+          this.userService.clearLocalStorage()
+          this.router.navigate(["/login"]);
+        }
+    }
     )
   }
 }

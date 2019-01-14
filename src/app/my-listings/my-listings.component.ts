@@ -8,10 +8,8 @@ import { RestRequestService } from '../rest-request.service'
   styleUrls: ['./my-listings.component.css']
 })
 export class MyListingsComponent implements OnInit {
-
   constructor(
     private restRequestService:RestRequestService,
-
   ) { }
 
   allListings:any;
@@ -20,7 +18,6 @@ export class MyListingsComponent implements OnInit {
 
     this.restRequestService.getRequest(undefined, "inventory", undefined).subscribe(
       listings => {
-      
         console.log(listings)
         this.allListings = listings
       },

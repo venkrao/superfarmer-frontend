@@ -76,14 +76,14 @@
     </div>
 
     <div class="form-group">
-      <label for="product">Price: </label>
+      <label for="price">Price: </label>
         <input
          type="text"
           required
           ngModel
           id="price"
           name="price"
-          #quantity="ngModel"/>
+          #price="ngModel"/>
         <div class="alert alert-danger" *ngIf="price.touched && !price.valid">
            Please specify the price
         </div>
@@ -97,8 +97,6 @@
          id="item_picture" name="item_picture"
 
         accept="image/png, image/jpeg"/>
-
-
     </div>
 
 <button (click)="onSubmit(createAdForm)" class="btn btn-succes" type="submit" [disabled]="!createAdForm.form.valid">Submit</button>
