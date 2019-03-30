@@ -21,53 +21,14 @@ export class ListingsComponent implements OnInit {
     private httpResponseParser: HttpResponseParserService
   ) { }
 
-  private showListingForm = false;
 
-  public toggle_listing_form() {
-    this.showListingForm = ! this.showListingForm
-    return false;
-  }
-
-showUploadedListings
-listing_id
-
-  public onSubmit(createAdForm) {
-    const formData = new FormData();
-
-      formData.append("product_name", createAdForm.controls['product_name'].value)
-      formData.append("measuring_unit", createAdForm.controls['measuring_unit'].value)
-      formData.append("quantity", createAdForm.controls['quantity'].value)
-      formData.append("image", this.item_picture, this.item_picture.name)
-      formData.append("price", createAdForm.controls['price'].value)
-
-
-    this.restRequestService.postRequest(undefined, formData, "inventory").subscribe(
-        response => {
-          this.listing_id = response["inventory_id"]
-        },
-        failure => {
-          console.log("Failure: "+ JSON.stringify(failure))
-          if (failure.error.detail == "Invalid token header. No credentials provided.") {
-            alert("Sorry. Your session has timed out. Please login again.")
-            this.userService.clearLocalStorage()
-            this.router.navigate(["/login"]);
-          }
-        }
-    )
-  }
-
-  item_picture: File = null;
-  onFileSelected(event) {
-    this.item_picture = <File>event.target.files[0];
-  }
-
+listingsAvailable
   allListings:any;
 
   ngOnInit() {
-
     this.restRequestService.getRequest(undefined, "inventory", undefined).subscribe(
       listings => {
-        this.showUploadedListings = true;
+        this.listingsAvailable = true;
         console.log(listings)
         this.allListings = listings
       },
@@ -77,7 +38,6 @@ listing_id
           this.userService.clearLocalStorage()
           this.router.navigate(["/login"]);
         }
-
         console.log(errors)
       }
     )

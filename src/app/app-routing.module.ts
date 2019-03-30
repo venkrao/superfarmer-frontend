@@ -7,6 +7,8 @@ import { ListingsComponent } from './listings/listings.component'
 import { ListingDetailComponent } from './listing-detail/listing-detail.component'
 import { MeComponent } from './me/me.component'
 import { MyListingsComponent } from './my-listings/my-listings.component'
+import { PlaygroundComponent } from './playground/playground.component'
+import { CreateListingComponent } from './create-listing/create-listing.component'
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -16,6 +18,8 @@ const routes: Routes = [
     { path: 'listing/:id', component: ListingDetailComponent },
     { path: 'me', component: MeComponent },
     { path: 'me/listings', component: MyListingsComponent },
+    { path: 'playground', component: PlaygroundComponent },
+    { path: 'createlisting', component: CreateListingComponent },
 ];
 
 @NgModule({

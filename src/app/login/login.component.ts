@@ -106,8 +106,8 @@ export class LoginComponent implements OnInit {
       const socialAuthUserdataJson = JSON.parse(JSON.stringify(socialAuthUserdata))
       //grant_type=convert_token&client_id=<client_id>&client_secret=<client_secret>&backend=<backend>&token=<backend_token>
       convertTokenPayload["grant_type"] = "convert_token"
-      convertTokenPayload["client_id"] = "1sby9LcLgxTCPlEQcqmi6digOZcySXERSOpGUv0B"
-      convertTokenPayload["client_secret"] = "MRVbug7895OOWreuyc7LIfFScarHobZZVr2H7O59Jy7OPyeshVdB3nayLOXEugoA7QsNFKMOVRzvs0OlHRwiWz5sBhh2C3D5NSwG7PbJPiyBkSkdXraikEWm5keTNagL"
+      convertTokenPayload["client_id"] = "SLqbkxJZvVsBuITel22NgpsrHn0BDquOPt9sl1li"
+      convertTokenPayload["client_secret"] = "ePwSEzSObQoivVUB0XZuvRRw1H2lWbjHqdEyT5PFT1CXWqMpE4rxt3QNhZp1Gy0hGWiAY5f4Jd5GAWzu4YwnOUHE5TKgLknG09ixkQe7wlxlBVZVAbTtktUrFat9JyrI"
       convertTokenPayload["backend"] = this.backendName
       convertTokenPayload["token"] = socialAuthUserdataJson["token"]
 

@@ -1,0 +1,23 @@
+<form #playgroundForm="ngForm" id="createAd"
+enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="data">Data: </label>
+      <input
+       type="text"
+        required
+        ngModel
+        id="data"
+        name="data"
+        #data="ngModel"/>
+      <div class="alert alert-danger" *ngIf="data.touched && !data.valid">
+         This is just a field to send some dummy data to the playground view.
+      </div>
+  </div>
+
+<button (click)="onSubmit(playgroundForm)" class="btn btn-succes" type="submit"
+[disabled]="!playgroundForm.form.valid">Submit</button>
+</form>
+
+<div *ngIf="response">
+  Response: <b><span>{{response}}</span></b>
+</div>
