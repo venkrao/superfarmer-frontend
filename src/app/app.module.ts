@@ -24,6 +24,8 @@ import { ListingsComponent } from './listings/listings.component';
 import { ListingDetailComponent } from './listing-detail/listing-detail.component';
 import { MeComponent } from './me/me.component';
 import { MyListingsComponent } from './my-listings/my-listings.component';
+import { PlaygroundComponent } from './playground/playground.component';
+import { CreateListingComponent } from './create-listing/create-listing.component';
 
 
 // Configs
@@ -53,6 +55,8 @@ export function getAuthServiceConfigs() {
     ListingDetailComponent,
     MeComponent,
     MyListingsComponent,
+    PlaygroundComponent,
+    CreateListingComponent,
   ],
   imports: [
     BrowserModule,

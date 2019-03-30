@@ -17,6 +17,8 @@ export class RestRequestService {
     "converttoken": "http://127.0.0.1:8000/auth/convert-token",
     "userprofile": "http://127.0.0.1:8000/userprofile",
     "inventory": "http://127.0.0.1:8000/inventory/",
+    "is_registration_complete": "http://127.0.0.1:8000/userregistrationstatus",
+    "playground": "http://127.0.0.1:8000/playground/",
     }
 
   getEndPoints = {
@@ -31,12 +33,20 @@ export class RestRequestService {
     "mylistings": {
         endpoint: "http://127.0.0.1:8000/me/listings",
         urlparams: undefined
-    }
+    },
+    "get_products": {
+        endpoint: "http://127.0.0.1:8000/product",
+        urlparams: undefined
+    },
+    "get_measuring_units": {
+        endpoint: "http://127.0.0.1:8000/measuringunit",
+        urlparams: undefined
+    },
   }
 
   public postRequest(httpRequestHeaders:any, httpRequestData:any, httpEndPoint:any) {
 
-    console.log("sending post request to: " + httpEndPoint + ": " + this.postEndpoints[httpEndPoint])
+   console.log("sending post request to: " + httpEndPoint + ": " + this.postEndpoints[httpEndPoint])
 
    console.log("composed request headers " + JSON.stringify(httpRequestHeaders))
    return this.http.post(this.postEndpoints[httpEndPoint],
@@ -59,8 +69,8 @@ export class RestRequestService {
 
     console.log("sending get request to: " + httpEndPoint + ": " + this.endpoint)
 
-   console.log("composed request headers " + JSON.stringify(httpRequestHeaders))
-   return this.http.get(this.endpoint, httpRequestHeaders)
+    console.log("composed request headers " + JSON.stringify(httpRequestHeaders))
+    return this.http.get(this.endpoint, httpRequestHeaders)
   }
 
 }

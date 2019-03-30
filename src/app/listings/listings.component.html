@@ -1,9 +1,5 @@
 <div class="container">
-  <div>
-     <a href="#" (click)="toggle_listing_form()">Create listing</a>
-    </div>
-
-  <div *ngIf="showUploadedListings">
+  <div *ngIf="listingsAvailable">
     <div *ngFor="let listing of allListings">
       <div class="listing-item-continer">
         <a class=".link-spanner" href="/listing/{{listing.inventory_item_id}}">{{listing.listing_title}}</a>
@@ -13,97 +9,12 @@
           <div>Quantity: {{ listing.inventory_product_quantity }} {{listing.measuring_unit}}</div>
           <div>Price: {{listing.item_price}} rupees </div>
           <div>Listed on: {{ listing.inventory_item_create_datetime }}</div>
-
+          <div>
+            Posted in: {{listing.product_category}}
+            </div>
           <img style="width: 25%;" src="http://127.0.0.1:8000{{listing.item_picture}}" class="img-fluid" alt="Responsive image">
-
       </div>
       <hr class="col-xs-12">
     </div>
     </div>
-</div>
-
-
-<div class="container" *ngIf="showListingForm">
-
-  You can create an advertisement listing for your crop here.
-
-  <form #createAdForm="ngForm" id="createAd"
-  enctype="multipart/form-data">
-    <div class="form-group">
-      <label for="product_name">Product: </label>
-        <select
-          required
-          ngModel
-          id="product_name"
-          name="product_name"
-          #product_name="ngModel">
-          <option value="select">Select</option>
-          <option value="groundnuts">Groundnuts</option>
-        </select>
-        <div class="alert alert-danger" *ngIf="product_name.touched && product_name.value == 'select'">
-           Please select a product from the dropdown box.
-        </div>
-    </div>
-
-    <div class="form-group">
-      <label for="measuring_unit">Measuring unit: </label>
-        <select
-          required
-          ngModel
-          id="measuring_unit"
-          name="measuring_unit"
-          #measuring_unit="ngModel">
-          <option value="select">Select</option>
-          <option value="kg">Kilograms</option>
-        </select>
-        <div class="alert alert-danger" *ngIf="measuring_unit.touched && measuring_unit.value == 'select'">
-           Please select a measuring unit.
-        </div>
-    </div>
-
-    <div class="form-group">
-      <label for="product">Quantity: </label>
-        <input
-         type="text"
-          required
-          ngModel
-          id="quantity"
-          name="quantity"
-          #quantity="ngModel"/>
-        <div class="alert alert-danger" *ngIf="quantity.touched && !quantity.valid">
-           How much quantity are you selling?
-        </div>
-    </div>
-
-    <div class="form-group">
-      <label for="price">Price: </label>
-        <input
-         type="text"
-          required
-          ngModel
-          id="price"
-          name="price"
-          #price="ngModel"/>
-        <div class="alert alert-danger" *ngIf="price.touched && !price.valid">
-           Please specify the price
-        </div>
-    </div>
-
-    <div class="form-group">
-      <label for="item_picture">Upload picture: </label>
-      <input type="file"
-         required
-         (change)="onFileSelected($event)"
-         id="item_picture" name="item_picture"
-
-        accept="image/png, image/jpeg"/>
-    </div>
-
-<button (click)="onSubmit(createAdForm)" class="btn btn-succes" type="submit" [disabled]="!createAdForm.form.valid">Submit</button>
- </form>
-
- <div *ngIf="createAdForm.valid">
-   Your listing: {{quantity.value}} {{measuring_unit.value}} of {{product_name.value}}
-   <span *ngIf="listing_id">Click <a href="/listing/{{listing_id}}">here </a> to view.</span>
- </div>
 </div>

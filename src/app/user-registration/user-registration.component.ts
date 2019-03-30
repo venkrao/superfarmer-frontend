@@ -51,11 +51,21 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("nginit in user-registeration.")
     if (this.userService.getAccessToken() == undefined ) {
       console.log("no token.")
       this.router.navigate(["/login"]);
     }
+
+    this.restRequestService.postRequest(undefined, undefined, "is_registration_complete").subscribe(
+      response => {
+        console.log(response)
+        if (response["registered"] == true) {
+          this.router.navigate(["/home"])
+        } else {
+          this.router.navigate(["/login"])
+        }
+      }
+    )
   }
 
 }
