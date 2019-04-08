@@ -1,0 +1,22 @@
+
+  <form #registerAsSellerForm="ngForm" id="registerAsSeller">
+    To sell your agrigultural products, you've to register as a seller.<br />
+    Please check the button, and click "Register As Seller"<br />
+
+    By registering as a seller, you agree to the terms, and conditions that dictate
+    the usage of Superfarmer.<br />
+  <br />
+  <input type="checkbox" id="accept_terms" name="accept_terms" value="yes" required #terms="ngModel"
+  [(ngModel)]="accept_terms" />I Accept
+
+  <button (click)="onSubmit(registerAsSellerForm)" class="btn btn-succes" type="submit"
+  [disabled]="!registerAsSellerForm.form.valid">Register As Seller</button>
+  </form>
+
+  <div *ngIf="registration_succeeded">
+    You're now registered as a seller. You can <a href="/createlisting">create listing</a> now.
+  </div>
+
+  <div *ngIf="registration_failed">
+    Sorry, there was an error. The team has been notified.
+  </div>

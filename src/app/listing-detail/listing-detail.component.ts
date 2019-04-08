@@ -34,7 +34,7 @@ export class ListingDetailComponent implements OnInit {
   product_category
   seller
   product_measuring_unit
-inventory_item_id
+  inventory_item_id
   quantity
   listing_title
   item_price
@@ -49,7 +49,8 @@ inventory_item_id
   	}
   );
 
-    this.restRequestService.getRequest(undefined, "inventory_item_listing", this.listing_id).subscribe(
+    this.restRequestService.getRequest(undefined, "inventory_item_listing",
+    this.listing_id).subscribe(
       response => {
           console.log("here")
           this.inventory_item_id = response[0]["inventory_item_id"]

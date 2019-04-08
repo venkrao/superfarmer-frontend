@@ -1,7 +1,20 @@
+<div *ngIf="seller">
+
   You can create an advertisement listing for your crop here.
 
   <form #createAdForm="ngForm" id="createAd"
   enctype="multipart/form-data">
+
+  <div class="form-group">
+  Advertisement title: <input type="text" #listing_title="ngModel"
+  [(ngModel)]="ad_title" name="listing_title" size="64"
+  placeholder="Title. Example: High quality organic groundnuts." required><br>
+
+  <div class="alert alert-danger" *ngIf="listing_title.touched && !listing_title.valid">
+     Please give your listing advertisement a title.
+  </div>
+  </div>
+
     <div class="form-group">
       <label for="product_name">Product: </label>
         <select
@@ -13,7 +26,7 @@
           <option value="select">Select</option>
           <option *ngFor="let k of products"
           value="{{k.product_name}}">{{k.product_name}}
-        </option>
+          </option>
 
         </select>
         <div class="alert alert-danger" *ngIf="product_name.touched && product_name.value == 'select'">
@@ -90,3 +103,9 @@
  <div *ngIf="errorResponse">
    Sorry, there was an error processing your request. The team has been notified.
  </div>
+</div>
+
+<div *ngIf="!seller">
+  You're not registered as a seller.
+  So please <a href="/register-as-seller">register as a seller</a> first.
+</div>

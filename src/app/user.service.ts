@@ -88,8 +88,20 @@ import * as moment from "moment";
     }
   }
 
+  is_registration_pending = false
   public registrationPending() {
-      return true;
+
+      this.http.post("is_registration_complete", undefined, undefined).subscribe(
+        response => {
+          console.log(response)
+          if (response["registered"] == true) {
+            this.is_registration_pending = false
+          } else {
+            this.is_registration_pending = true
+          }
+        }
+      )
+      return this.is_registration_pending
   }
 
   public getUsername() {

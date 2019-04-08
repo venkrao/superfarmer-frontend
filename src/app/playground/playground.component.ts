@@ -31,18 +31,18 @@ export class PlaygroundComponent implements OnInit {
 
     this.restRequestService.postRequest(undefined, formData, "playground").subscribe(
         response => {
+          console.log(response)
           this.response = JSON.stringify(response["response"])
-          console.log(this.response)
+
         },
         failure => {
           console.log("Failure: "+ JSON.stringify(failure))
           if (failure.error.detail == "Invalid token header. No credentials provided.") {
             alert("Sorry. Your session has timed out. Please login again.")
             this.userService.clearLocalStorage()
-            this.router.navigate(["/login"]);
+            this.router.navigate(["/login"])
           }
         }
     )
-
   }
 }

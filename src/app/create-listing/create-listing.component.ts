@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {
    Router,
-   ActivatedRoute,
+
 
 } from '@angular/router';
 import { UserService } from '../user.service'
@@ -21,7 +21,7 @@ export class CreateListingComponent implements OnInit {
   constructor(
     private restRequestService:RestRequestService,
       private router:Router,
-      private activatedRoute: ActivatedRoute,
+
       private userService: UserService,
       private httpResponseParser: HttpResponseParserService
   ) { }
@@ -29,7 +29,20 @@ export class CreateListingComponent implements OnInit {
   products = undefined
   measuring_units = undefined
 
+  seller = false
+
   ngOnInit() {
+  this.restRequestService.postRequest(undefined, undefined, "isseller").
+    subscribe(
+        response => {
+           if (response["seller"] == true)
+              this.seller = true
+        },
+        error => {
+          console.log(error)
+        }
+    )
+
     this.restRequestService.getRequest(undefined, "get_products", undefined).
     subscribe(
       products => {
@@ -47,8 +60,13 @@ export class CreateListingComponent implements OnInit {
         this.measuring_units = measuring_units
         console.log(measuring_units)
       },
-      errors => {
-        console.log(errors)
+      error => {
+        console.log(error)
+        if (this.httpResponseParser.isForbiddenResponse(error) == 403) {
+          alert("Invalid session. Please login again.")
+          this.userService.clearLocalStorage()
+          this.router.navigate(["/login"]);
+        }
       }
     )
   }
@@ -59,6 +77,7 @@ export class CreateListingComponent implements OnInit {
   public onSubmit(createAdForm) {
     const formData = new FormData();
 
+      formData.append("listing_title", createAdForm.controls['listing_title'].value)
       formData.append("product_name", createAdForm.controls['product_name'].value)
       formData.append("measuring_unit", createAdForm.controls['measuring_unit'].value)
       formData.append("quantity", createAdForm.controls['quantity'].value)

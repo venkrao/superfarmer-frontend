@@ -50,7 +50,10 @@ export class UserRegistrationComponent implements OnInit {
     );
   }
 
+  isSeller
   ngOnInit() {
+  
+
     if (this.userService.getAccessToken() == undefined ) {
       console.log("no token.")
       this.router.navigate(["/login"]);

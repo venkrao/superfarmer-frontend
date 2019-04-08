@@ -9,6 +9,7 @@ import { MeComponent } from './me/me.component'
 import { MyListingsComponent } from './my-listings/my-listings.component'
 import { PlaygroundComponent } from './playground/playground.component'
 import { CreateListingComponent } from './create-listing/create-listing.component'
+import { RegisterAsSellerComponent } from './register-as-seller/register-as-seller.component'
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
     { path: 'me/listings', component: MyListingsComponent },
     { path: 'playground', component: PlaygroundComponent },
     { path: 'createlisting', component: CreateListingComponent },
+    { path: 'register-as-seller', component: RegisterAsSellerComponent },
 ];
 
 @NgModule({

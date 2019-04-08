@@ -26,7 +26,8 @@ import { MeComponent } from './me/me.component';
 import { MyListingsComponent } from './my-listings/my-listings.component';
 import { PlaygroundComponent } from './playground/playground.component';
 import { CreateListingComponent } from './create-listing/create-listing.component';
-
+import { RegisterAsSellerComponent } from './register-as-seller/register-as-seller.component';
+import { ReactiveFormsModule } from '@angular/forms'; // <== add the imports!
 
 // Configs
 export function getAuthServiceConfigs() {
@@ -57,6 +58,7 @@ export function getAuthServiceConfigs() {
     MyListingsComponent,
     PlaygroundComponent,
     CreateListingComponent,
+    RegisterAsSellerComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,9 +67,12 @@ export function getAuthServiceConfigs() {
     SocialLoginModule,
     HttpModule,
     HttpClientModule,
+    FormsModule,                            // <========== Add this line!
+    ReactiveFormsModule,
     HttpClientXsrfModule.withOptions({
     cookieName: 'csrftoken',
     headerName: 'X-CSRFToken',
+
 })
 
   ],

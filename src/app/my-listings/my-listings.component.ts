@@ -16,10 +16,10 @@ export class MyListingsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.restRequestService.getRequest(undefined, "inventory", undefined).subscribe(
+    this.restRequestService.postRequest(undefined, undefined, "mylistings").subscribe(
       listings => {
         console.log(listings)
-        this.allListings = listings
+        this.allListings = listings["repsonse"]
       },
       errors => {
         console.log(errors)

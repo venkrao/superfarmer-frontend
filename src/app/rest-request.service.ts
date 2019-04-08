@@ -8,7 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class RestRequestService {
 
   constructor(private userService:UserService,
-    private http: HttpClient) {
+    private http: HttpClient,
+    ) {
   }
 
   postEndpoints = {
@@ -19,6 +20,9 @@ export class RestRequestService {
     "inventory": "http://127.0.0.1:8000/inventory/",
     "is_registration_complete": "http://127.0.0.1:8000/userregistrationstatus",
     "playground": "http://127.0.0.1:8000/playground/",
+    "isseller": "http://127.0.0.1:8000/isseller/",
+    "register_as_seller": "http://127.0.0.1:8000/register-as-seller/",
+    "mylistings": "http://127.0.0.1:8000/me/listings/",
     }
 
   getEndPoints = {
@@ -28,10 +32,6 @@ export class RestRequestService {
     },
     "inventory": {
         endpoint: "http://127.0.0.1:8000/inventory",
-        urlparams: undefined
-    },
-    "mylistings": {
-        endpoint: "http://127.0.0.1:8000/me/listings",
         urlparams: undefined
     },
     "get_products": {
