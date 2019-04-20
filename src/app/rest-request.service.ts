@@ -23,6 +23,7 @@ export class RestRequestService {
     "isseller": "http://127.0.0.1:8000/isseller/",
     "register_as_seller": "http://127.0.0.1:8000/register-as-seller/",
     "mylistings": "http://127.0.0.1:8000/me/listings/",
+    "listings_by_category": "http://127.0.0.1:8000/listingsbycategory/"
     }
 
   getEndPoints = {
@@ -42,6 +43,14 @@ export class RestRequestService {
         endpoint: "http://127.0.0.1:8000/measuringunit",
         urlparams: undefined
     },
+    "playground": {
+        endpoint: "http://127.0.0.1:8000/playground",
+        urlparams: undefined
+    },
+    "listings_by_category": {
+        endpoint: "http://127.0.0.1:8000/listingsbycategory",
+        urlparams: undefined
+    }
   }
 
   public postRequest(httpRequestHeaders:any, httpRequestData:any, httpEndPoint:any) {

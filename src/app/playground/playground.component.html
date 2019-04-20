@@ -14,8 +14,11 @@ enctype="multipart/form-data">
       </div>
   </div>
 
-<button (click)="onSubmit(playgroundForm)" class="btn btn-succes" type="submit"
-[disabled]="!playgroundForm.form.valid">Submit</button>
+<button (click)="onSubmitPost(playgroundForm)" class="btn btn-succes" type="submit"
+[disabled]="!playgroundForm.form.valid">Submit POST</button>
+<br /><br />
+<button (click)="onSubmitGet(playgroundForm)" class="btn btn-succes" type="submit"
+[disabled]="!playgroundForm.form.valid">Submit GET</button>
 </form>
 
 <div *ngIf="response">
