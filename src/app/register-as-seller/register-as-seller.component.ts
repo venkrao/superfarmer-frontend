@@ -28,9 +28,8 @@ export class RegisterAsSellerComponent implements OnInit {
         if (response["response"] == "success") {
           this.registration_failed = false
           this.registration_succeeded = true
-        } else {
+        } else if (response["response"] == "failed")
           this.registration_failed = true
-        }
       },
       error => {
         console.log(error)

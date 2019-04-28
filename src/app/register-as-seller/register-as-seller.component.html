@@ -13,6 +13,10 @@
   [disabled]="!registerAsSellerForm.form.valid">Register As Seller</button>
   </form>
 
+  <div *ngIf="already_a_seller">
+    You're <b>already</b> a seller. You can <a href="/createlisting">create listing</a> now.
+  </div>
+
   <div *ngIf="registration_succeeded">
     You're now registered as a seller. You can <a href="/createlisting">create listing</a> now.
   </div>

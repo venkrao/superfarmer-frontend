@@ -13,13 +13,15 @@ export class MyListingsComponent implements OnInit {
   ) { }
 
   allListings:any;
+  listingsAvailable
 
   ngOnInit() {
 
-    this.restRequestService.postRequest(undefined, undefined, "mylistings").subscribe(
+    this.restRequestService.getRequest(undefined, "mylistings", undefined).subscribe(
       listings => {
+        this.listingsAvailable = true
         console.log(listings)
-        this.allListings = listings["repsonse"]
+        this.allListings = listings
       },
       errors => {
         console.log(errors)

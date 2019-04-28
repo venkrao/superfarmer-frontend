@@ -50,6 +50,10 @@ export class RestRequestService {
     "listings_by_category": {
         endpoint: "http://127.0.0.1:8000/listingsbycategory",
         urlparams: undefined
+    },
+    "mylistings": {
+      endpoint: "http://127.0.0.1:8000/me/listings",
+      urlparams: undefined
     }
   }
 
