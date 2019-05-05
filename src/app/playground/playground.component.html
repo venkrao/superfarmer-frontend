@@ -19,6 +19,10 @@ enctype="multipart/form-data">
 <br /><br />
 <button (click)="onSubmitGet(playgroundForm)" class="btn btn-succes" type="submit"
 [disabled]="!playgroundForm.form.valid">Submit GET</button>
+<br /><br />
+<button (click)="onSubmitDelete(playgroundForm)" class="btn btn-succes" type="submit"
+[disabled]="!playgroundForm.form.valid">Submit DELETE</button>
+
 </form>
 
 <div *ngIf="response">

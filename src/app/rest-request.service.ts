@@ -57,6 +57,17 @@ export class RestRequestService {
     }
   }
 
+  deleteEndPoints = {
+    "playground": {
+        endpoint: "http://127.0.0.1:8000/playground",
+        urlparams: undefined
+    },
+    "inventory_item": {
+      endpoint: "http://127.0.0.1:8000/inventory",
+        urlparams: undefined
+    },
+  }
+
   public postRequest(httpRequestHeaders:any, httpRequestData:any, httpEndPoint:any) {
 
    console.log("sending post request to: " + httpEndPoint + ": " + this.postEndpoints[httpEndPoint])
@@ -84,6 +95,24 @@ export class RestRequestService {
 
     console.log("composed request headers " + JSON.stringify(httpRequestHeaders))
     return this.http.get(this.endpoint, httpRequestHeaders)
+  }
+
+  public deleteRequest(httpRequestHeaders:any, httpEndPoint:any, urlParam:any ) {
+
+    if (urlParam != undefined) {
+      this.endpoint = this.deleteEndPoints[httpEndPoint]["endpoint"] + "/" + urlParam
+    } else {
+      this.endpoint = this.deleteEndPoints[httpEndPoint]["endpoint"]
+    }
+
+    if (this.deleteEndPoints[httpEndPoint]["urlparams"]) {
+      this.endpoint = this.endpoint + "/" + this.deleteEndPoints[httpEndPoint]["urlparams"]
+    }
+
+    console.log("sending get request to: " + httpEndPoint + ": " + this.endpoint)
+
+    console.log("composed request headers " + JSON.stringify(httpRequestHeaders))
+    return this.http.delete(this.endpoint, httpRequestHeaders)
   }
 
 }

@@ -22,6 +22,7 @@ export class PlaygroundComponent implements OnInit {
 }
   response: any
   category_name
+  inventory_id
   ngOnInit() {
   }
 
@@ -50,6 +51,26 @@ export class PlaygroundComponent implements OnInit {
     this.category_name = playgroundForm.controls['data'].value
 
     this.restRequestService.getRequest(undefined, "playground", "category_name=" + this.category_name).subscribe(
+        response => {
+          console.log(response)
+          this.response = JSON.stringify(response["response"])
+
+        },
+        failure => {
+          console.log("Failure: "+ JSON.stringify(failure))
+          if (failure.error.detail == "Invalid token header. No credentials provided.") {
+            alert("Sorry. Your session has timed out. Please login again.")
+            this.userService.clearLocalStorage()
+            this.router.navigate(["/login"])
+          }
+        }
+    )
+  }
+
+  onSubmitDelete(playgroundForm) {
+    this.inventory_id = playgroundForm.controls['data'].value
+
+    this.restRequestService.deleteRequest(undefined, "playground", this.inventory_id).subscribe(
         response => {
           console.log(response)
           this.response = JSON.stringify(response["response"])

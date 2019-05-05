@@ -28,7 +28,9 @@ import { PlaygroundComponent } from './playground/playground.component';
 import { CreateListingComponent } from './create-listing/create-listing.component';
 import { RegisterAsSellerComponent } from './register-as-seller/register-as-seller.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ListingsByCategoryComponent } from './listings-by-category/listings-by-category.component'; // <== add the imports!
+import { ListingsByCategoryComponent } from './listings-by-category/listings-by-category.component';
+
+
 
 // Configs
 export function getAuthServiceConfigs() {
@@ -61,6 +63,8 @@ export function getAuthServiceConfigs() {
     CreateListingComponent,
     RegisterAsSellerComponent,
     ListingsByCategoryComponent,
+
+
   ],
   imports: [
     BrowserModule,
