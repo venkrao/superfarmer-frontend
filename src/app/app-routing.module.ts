@@ -11,7 +11,8 @@ import { PlaygroundComponent } from './playground/playground.component'
 import { CreateListingComponent } from './create-listing/create-listing.component'
 import { RegisterAsSellerComponent } from './register-as-seller/register-as-seller.component'
 import { ListingsByCategoryComponent } from './listings-by-category/listings-by-category.component'
-
+import { HellothereComponent } from './hellothere/hellothere.component'
+import { TransporterComponent } from './transporter/transporter.component'
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [
     { path: 'createlisting', component: CreateListingComponent },
     { path: 'register-as-seller', component: RegisterAsSellerComponent },
     { path: 'listingsbycategory/:id', component: ListingsByCategoryComponent },
-
+    { path: 'hellothere', component: HellothereComponent },
+    { path: 'transporter', component: TransporterComponent },
 ];
 
 @NgModule({

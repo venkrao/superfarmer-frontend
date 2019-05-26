@@ -1,9 +1,14 @@
-<div class="container">
+<div *ngIf="brokenBackend">
+<b>Sorry, the server isn't functioning. The team has been notified. Please retry after sometime.</b>
+</div>
+
   <div *ngIf="listingsAvailable">
     <div *ngFor="let listing of allListings">
       <div class="listing-item-continer">
         <a class=".link-spanner" href="/listing/{{listing.inventory_item_id}}">{{listing.listing_title}}</a>
-          <span class="link-spanner"></span>
+        <button mat-raised-button  id="contact_seller"
+          (click)="openDialog(listing.inventory_item_id)">Contact Seller</button>
+
           <div>Product: {{ listing.product_name }} </div>
           <div>Quantity: {{ listing.inventory_product_quantity }} {{listing.measuring_unit}}</div>
           <div>Price: {{listing.item_price}} rupees </div>
@@ -11,9 +16,9 @@
           <div>
             Posted in: {{listing.product_category}}
             </div>
-          <img style="width: 25%;" src="http://127.0.0.1:8000{{listing.item_picture}}" class="img-fluid" alt="Responsive image">
+          <img style="width: 25%;" src="http://127.0.0.1:8000{{listing.item_picture}}"
+          class="img-fluid" alt="Responsive image">
       </div>
       <hr class="col-xs-12">
     </div>
     </div>
-</div>

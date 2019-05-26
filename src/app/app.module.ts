@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 import { HttpClient,  HttpHeaders, HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.service';
@@ -18,6 +19,9 @@ import {
     GoogleLoginProvider,
     FacebookLoginProvider,
 } from "angular5-social-login";
+import {MatDialogModule} from '@angular/material/dialog';
+
+
 import { HomeComponent } from './home/home.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { ListingsComponent } from './listings/listings.component';
@@ -29,8 +33,10 @@ import { CreateListingComponent } from './create-listing/create-listing.componen
 import { RegisterAsSellerComponent } from './register-as-seller/register-as-seller.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ListingsByCategoryComponent } from './listings-by-category/listings-by-category.component';
+import { HellothereComponent } from './hellothere/hellothere.component';
+import { TransporterComponent } from './transporter/transporter.component';
 
-
+import { ContactSellerDialogComponent } from './contact-seller-dialog/contact-seller-dialog.component';
 
 // Configs
 export function getAuthServiceConfigs() {
@@ -63,7 +69,10 @@ export function getAuthServiceConfigs() {
     CreateListingComponent,
     RegisterAsSellerComponent,
     ListingsByCategoryComponent,
+    HellothereComponent,
+    TransporterComponent,
 
+    ContactSellerDialogComponent,
 
   ],
   imports: [
@@ -75,12 +84,16 @@ export function getAuthServiceConfigs() {
     HttpClientModule,
     FormsModule,                            // <========== Add this line!
     ReactiveFormsModule,
+    MatDialogModule,
     HttpClientXsrfModule.withOptions({
     cookieName: 'csrftoken',
     headerName: 'X-CSRFToken',
 
-})
-
+    }),
+    BrowserAnimationsModule,
+  ],
+  entryComponents: [
+    ContactSellerDialogComponent
   ],
   providers: [
     {
