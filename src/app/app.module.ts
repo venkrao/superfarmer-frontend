@@ -37,6 +37,8 @@ import { HellothereComponent } from './hellothere/hellothere.component';
 import { TransporterComponent } from './transporter/transporter.component';
 
 import { ContactSellerDialogComponent } from './contact-seller-dialog/contact-seller-dialog.component';
+import { MyhomepageComponent } from './myhomepage/myhomepage.component';
+import { MypopmodalComponent } from './mypopmodal/mypopmodal.component';
 
 // Configs
 export function getAuthServiceConfigs() {
@@ -74,6 +76,10 @@ export function getAuthServiceConfigs() {
 
     ContactSellerDialogComponent,
 
+    MyhomepageComponent,
+
+    MypopmodalComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -93,7 +99,7 @@ export function getAuthServiceConfigs() {
     BrowserAnimationsModule,
   ],
   entryComponents: [
-    ContactSellerDialogComponent
+    ContactSellerDialogComponent,MypopmodalComponent
   ],
   providers: [
     {

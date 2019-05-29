@@ -1,12 +1,16 @@
-<div mat-dialog-actions>
-  Write to the seller here, and if he accepts, you will get his contact number!
-  <button mat-button (click)="onNoClick()">Close</button>
-  <button mat-button (click)="contactSeller()">Send</button>
-  <br />
+
+  Write to the seller here, and if the seller is interested, you will get his contact number!
+  <textarea name="request" [(ngModel)]="request_body" rows="8" cols="80">
+Dear Seller,
+I'm interested in doing business with you. Please provide me your contact details. I hope this turns out to be a good partnership for both of us.</textarea>
+  <div>
+    <button mat-button (click)="onNoClick()">Close</button>
+    	<button mat-button (click)="contactSeller()">Send</button>
+    </div>
+
   <div *ngIf="send_succeded">
-    <b> Your request has been sent successfully </b>
+    <b> Your request has been sent successfully. </b>
   </div>
   <div *ngIf="send_failed">
-  <b>  Sorry, something did not go well. Please retry.</b>
+  <b> Sorry, something did not go well. Please retry.</b>
   </div>
-</div>

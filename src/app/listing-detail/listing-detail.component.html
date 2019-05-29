@@ -7,6 +7,7 @@
     <div>Sold by: {{seller_name}}  </div>
     <div>Listed on: {{inventory_item_create_datetime}} </div>
     <div>Listed in category: <a href="/listingsbycategory/{{product_category}}">{{product_category}} </a></div><br />
+    <button mat-raised-button  id="contact_seller" (click)="openDialog(inventory_item_id)">Contact Seller</button>
     <img src="{{item_picture}}" class="img-thumbnail" alt="Responsive image">
   </div>
 </div>

@@ -8,6 +8,8 @@ import { UserService } from '../user.service'
 import { RestRequestService } from '../rest-request.service'
 
 import { HttpResponseParserService } from '../http-response-parser.service'
+import { ContactSellerDialogComponent } from '../contact-seller-dialog/contact-seller-dialog.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-listing-detail',
@@ -20,7 +22,8 @@ export class ListingDetailComponent implements OnInit {
     private router:Router,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private httpResponseParser: HttpResponseParserService
+    private httpResponseParser: HttpResponseParserService,
+    public dialog: MatDialog,
   ) { }
 
   // input
@@ -78,4 +81,15 @@ export class ListingDetailComponent implements OnInit {
     }
     )
   }
+
+  openDialog(listing_id): void {
+   const dialogRef = this.dialog.open(ContactSellerDialogComponent, {
+     width: '40%',
+     data: {listing_id: listing_id}
+   });
+
+   dialogRef.afterClosed().subscribe(result => {
+     console.log('The dialog was closed');
+   });
+ }
 }

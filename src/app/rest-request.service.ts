@@ -23,7 +23,8 @@ export class RestRequestService {
     "isseller": "http://127.0.0.1:8000/isseller/",
     "register_as_seller": "http://127.0.0.1:8000/register-as-seller/",
     "mylistings": "http://127.0.0.1:8000/me/listings/",
-    "listings_by_category": "http://127.0.0.1:8000/listingsbycategory/"
+    "listings_by_category": "http://127.0.0.1:8000/listingsbycategory/",
+    "initiate_negotiation": "http://127.0.0.1:8000/negotiationrequest/"
     }
 
   getEndPoints = {

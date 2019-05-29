@@ -53,7 +53,7 @@ brokenBackend
 
   openDialog(listing_id): void {
    const dialogRef = this.dialog.open(ContactSellerDialogComponent, {
-     width: '250px',
+     width: '40%',
      data: {listing_id: listing_id}
    });
 

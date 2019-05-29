@@ -13,6 +13,7 @@ import { RegisterAsSellerComponent } from './register-as-seller/register-as-sell
 import { ListingsByCategoryComponent } from './listings-by-category/listings-by-category.component'
 import { HellothereComponent } from './hellothere/hellothere.component'
 import { TransporterComponent } from './transporter/transporter.component'
+import { MyhomepageComponent } from './myhomepage/myhomepage.component'
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
     { path: 'listingsbycategory/:id', component: ListingsByCategoryComponent },
     { path: 'hellothere', component: HellothereComponent },
     { path: 'transporter', component: TransporterComponent },
+    { path: 'myhomepage', component: MyhomepageComponent},
 ];
 
 @NgModule({
