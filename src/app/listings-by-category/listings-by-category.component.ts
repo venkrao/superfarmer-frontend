@@ -24,7 +24,7 @@ export class ListingsByCategoryComponent implements OnInit {
   // input
   categoryName:any;
   listingsAvailable
-  allListings:any;
+  listings:any;
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(
@@ -38,7 +38,7 @@ export class ListingsByCategoryComponent implements OnInit {
     this.restRequestService.getRequest(undefined, "listings_by_category", this.categoryName).subscribe(
         listings => {
           this.listingsAvailable = true
-          this.allListings = listings
+          this.listings = listings
         },
         failure => {
           console.log("Failure: "+ JSON.stringify(failure))

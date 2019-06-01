@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-my-listings',
@@ -7,9 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService,
+              private router:Router
+              ) { }
+
+  user_name
+  logout_succeeded
 
   ngOnInit() {
+    this.user_name = this.userService.getUsername()
+  }
+
+  logout() {
+    if (this.userService.logout()) {
+      this.logout_succeeded = true
+      window.location.reload()
+      return false
+    }
+  }
+
+  login() {
+    this.router.navigate(['/login'])
+    return false
+  }
+
+  myNegotiationRequests() {
+    this.router.navigate(["me/negotiationrequests"])
+    return false
   }
 
 }

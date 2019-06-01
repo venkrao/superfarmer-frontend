@@ -30,18 +30,7 @@ export class ListingDetailComponent implements OnInit {
   listing_id:any;
 
   // response
-  inventory_product_quantity
-  inventory_item_create_datetime
-  item_picture
-  product_name
-  product_category
-  seller
-  product_measuring_unit
-  inventory_item_id
-  quantity
-  listing_title
-  item_price
-  seller_name
+  listingDetails
 
   ngOnInit() {
       //this.restRequestService.getRequest(undefined, "inventory",  )
@@ -55,20 +44,7 @@ export class ListingDetailComponent implements OnInit {
     this.restRequestService.getRequest(undefined, "inventory_item_listing",
     this.listing_id).subscribe(
       response => {
-          console.log("here")
-          this.inventory_item_id = response[0]["inventory_item_id"]
-          this.listing_title = response[0]["listing_title"]
-          this.inventory_product_quantity = response[0]["inventory_product_quantity"]
-          this.inventory_item_create_datetime = response[0]["inventory_item_create_datetime"]
-          this.item_picture = "http://127.0.0.1:8000"  + response[0]["item_picture"]
-          this.product_name = response[0]["product_name"]
-          this.product_category = response[0]["product_category"]
-          this.product_measuring_unit = response[0]["measuring_unit"]
-          this.item_price = response[0]["item_price"]
-          this.seller_name = response[0]["seller_name"]
-
-          this.quantity = this.inventory_product_quantity
-
+          this.listingDetails = response
           console.log(response)
       },
       error => {

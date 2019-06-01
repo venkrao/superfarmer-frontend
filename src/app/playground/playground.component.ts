@@ -50,7 +50,8 @@ export class PlaygroundComponent implements OnInit {
   onSubmitGet(playgroundForm) {
     this.category_name = playgroundForm.controls['data'].value
 
-    this.restRequestService.getRequest(undefined, "playground", "category_name=" + this.category_name).subscribe(
+    this.restRequestService.getRequest(undefined, "playground",
+      undefined).subscribe(
         response => {
           console.log(response)
           this.response = JSON.stringify(response["response"])

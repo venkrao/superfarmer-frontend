@@ -1,0 +1,44 @@
+
+  <a href="#" (click)="get_sent_requests()">Sent requests</a><br>
+  <a href="#" (click)="get_received_requests()">Received requests</a>
+
+
+  <div *ngIf="sent_requests_exist">
+    <h3>Negotiation requests: Sent </h3>
+    <hr>
+    <div *ngFor="let sent_request of sent_requests">
+      <a href="/listing/{{sent_request.listing_id}}">{{sent_request.listing_title}}</a>
+      <div>Sold by: {{sent_request.seller}}</div>
+      <div>Your request message: {{sent_request.request_body}}</div>
+      <div>Sent on: {{sent_request.sent_on}}</div><br>
+      <div>Request status: {{sent_request.accepted}}</div>
+    </div>
+  </div>
+
+
+  <div *ngIf="received_requests_exist">
+    <h3>Negotiation requests: Received </h3>
+    <hr>
+    <div *ngFor="let received_request of received_requests">
+      <a href="/listing/{{received_request.listing_id}}">{{received_request.listing_title}}</a>
+      <div>Buyer name: {{received_request.buyer}}</div>
+      <div>Their request message to you: <br>{{received_request.request_body}}</div>
+      <div>Sent on: {{received_request.sent_on}}</div><br>
+      <div>Request status: {{received_request.accepted}}</div>
+    </div>
+
+  </div>
+
+<div *ngIf="no_received_requests_exist">
+  <h3>Negotiation requests: Received </h3>
+  <hr>
+  <h4> None</h4>
+</div>
+
+
+  <div *ngIf="no_sent_requests_exist">
+
+    <h3>Negotiation requests: Sent </h3>
+    <hr>
+    <h4> None</h4>
+  </div>

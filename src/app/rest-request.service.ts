@@ -45,7 +45,7 @@ export class RestRequestService {
         urlparams: undefined
     },
     "playground": {
-        endpoint: "http://127.0.0.1:8000/playground",
+        endpoint: "http://127.0.0.1:8000/playground/",
         urlparams: undefined
     },
     "listings_by_category": {
@@ -55,7 +55,15 @@ export class RestRequestService {
     "mylistings": {
       endpoint: "http://127.0.0.1:8000/me/listings",
       urlparams: undefined
-    }
+    },
+    "my_negotiation_requests_sent" : {
+      endpoint: "http://127.0.0.1:8000/me/negotiationrequests/sent",
+      urlparams: undefined
+    },
+    "my_negotiation_requests_received" : {
+      endpoint: "http://127.0.0.1:8000/me/negotiationrequests/received",
+      urlparams: undefined
+    },
   }
 
   deleteEndPoints = {

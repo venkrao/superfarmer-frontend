@@ -1,5 +1,13 @@
 <div class="container">
-<p>
-  <a href="/me/listings">My listings</a>
-</p>
+<div *ngIf="user_name !== 'anonymous' ">
+  <a href="/me/listings">My listings</a><br>
+  <a (click)="logout()" href="#">Logout</a><br>
+  <a (click)="myNegotiationRequests()" href="#">My negotiation requests</a><br>
+</div>
+
+<div *ngIf="user_name === 'anonymous'">
+<a (click)="login()" href="#">Please Login</a>
+</div>
+
+
 </div>

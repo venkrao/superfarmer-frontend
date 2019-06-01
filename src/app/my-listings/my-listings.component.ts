@@ -25,12 +25,15 @@ export class MyListingsComponent implements OnInit {
   inventory_id
   response
   delete_listing
+  total
 
   ngOnInit() {
     this.restRequestService.getRequest(undefined, "mylistings", undefined).subscribe(
       listings => {
+        this.total = 0
         if (Object.keys(listings).length > 0) {
             this.listingsAvailable = true
+            this.total = Object.keys(listings).length
         }
         this.allListings = listings
       },

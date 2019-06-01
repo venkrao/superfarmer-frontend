@@ -73,7 +73,12 @@ import * as moment from "moment";
     return true
   }
 
-  public setLocalStorageSessionData() {
+   public logout() {
+     localStorage.clear()
+     return true
+   }
+
+   public setLocalStorageSessionData() {
     localStorage.setItem('access_token', this.access_token);
     localStorage.setItem('refresh_token', this.refresh_token);
   }

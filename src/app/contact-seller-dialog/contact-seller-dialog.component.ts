@@ -28,9 +28,10 @@ export class ContactSellerDialogComponent implements OnInit {
   }
 
   listing_id
-  send_succeded
-  send_failed
+  send_succeded = false
+  send_failed = false
   request_body
+  reason
 
   onNoClick(): void {
       this.dialogRef.close();
@@ -47,8 +48,9 @@ export class ContactSellerDialogComponent implements OnInit {
       subscribe(
           response => {
              console.log(response)
-             if (response["response"] == "Failed") {
+             if (response["response"] == "failed") {
                this.send_failed = true
+               this.reason = response["reason"]
              } else {
                this.send_succeded = true
              }

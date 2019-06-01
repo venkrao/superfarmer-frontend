@@ -27,15 +27,15 @@ export class ListingsComponent implements OnInit {
 
 
 listingsAvailable
-allListings:any;
+listings:any;
 contact_seller
 brokenBackend
   ngOnInit() {
     this.restRequestService.getRequest(undefined, "inventory", undefined).subscribe(
       listings => {
         this.listingsAvailable = true;
+        this.listings = listings
         console.log(listings)
-        this.allListings = listings
       },
       errors => {
         if (this.httpResponseParser.isForbiddenResponse(errors) == 403) {
@@ -51,14 +51,18 @@ brokenBackend
     )
   }
 
-  openDialog(listing_id): void {
+  openDialog(listing_id, soldby): void {
    const dialogRef = this.dialog.open(ContactSellerDialogComponent, {
      width: '40%',
-     data: {listing_id: listing_id}
+     data: {listing_id: listing_id, soldby: soldby}
    });
 
    dialogRef.afterClosed().subscribe(result => {
      console.log('The dialog was closed');
    });
  }
+
+  redirectToLogin() {
+  this.router.navigate(["/login"])
+  }
 }
