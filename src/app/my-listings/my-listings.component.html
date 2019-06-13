@@ -12,7 +12,7 @@
           <span class="link-spanner"></span>
           <div>Product: {{ listing.product_name }} </div>
           <div>Quantity: {{ listing.inventory_product_quantity }} {{listing.measuring_unit}}</div>
-          <div>Price: {{listing.item_price}} rupees </div>
+          <div>TOTAL price: {{listing.item_price}} rupees </div>
           <div>Listed on: {{ listing.inventory_item_create_datetime }}</div>
         <div>Listed in category: <a href="/listingsbycategory/{{listing.product_category}}">{{listing.product_category}} </a></div><br />
           <img style="width: 25%;" src="http://127.0.0.1:8000{{listing.item_picture}}" class="img-fluid" alt="Responsive image">

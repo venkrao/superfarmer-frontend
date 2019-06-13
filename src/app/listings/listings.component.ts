@@ -33,9 +33,16 @@ brokenBackend
   ngOnInit() {
     this.restRequestService.getRequest(undefined, "inventory", undefined).subscribe(
       listings => {
-        this.listingsAvailable = true;
-        this.listings = listings
-        console.log(listings)
+        if (Object.keys(listings).length > 0) {
+          this.listingsAvailable = true;
+          this.listings = listings
+          console.log(listings)
+        } else {
+          console.log("no listings available.")
+          this.listingsAvailable = false;
+        }
+
+
       },
       errors => {
         if (this.httpResponseParser.isForbiddenResponse(errors) == 403) {

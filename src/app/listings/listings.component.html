@@ -1,7 +1,7 @@
 <div *ngIf="brokenBackend">
 <b>Sorry, the server isn't functioning. The team has been notified. Please retry after sometime.</b>
 </div>
-  <div *ngIf="listingsAvailable">
+  <div *ngIf="listingsAvailable; else nolistings">
     <div *ngFor="let listing of listings">
       <div class="listing-item-continer">
         <a class=".link-spanner" href="/listing/{{listing.inventory_item_id}}">{{listing.listing_title}}</a>
@@ -18,7 +18,7 @@
 
           <div>Product: {{ listing.product_name }} </div>
           <div>Quantity: {{ listing.inventory_product_quantity }} {{listing.measuring_unit}}</div>
-          <div>Price: {{listing.item_price}} rupees </div>
+          <div>TOTAL price: {{listing.item_price}} rupees </div>
           <div>Sold by: {{listing.seller_name}}  </div>
         <div>Listed in category: <a href="/listingsbycategory/{{listing.product_category}}">{{listing.product_category}} </a></div><br />
           <div>
@@ -30,3 +30,6 @@
       <hr class="col-xs-12">
     </div>
     </div>
+<ng-template #nolistings>
+  No listings are available at the moment. Please check back later.
+</ng-template>

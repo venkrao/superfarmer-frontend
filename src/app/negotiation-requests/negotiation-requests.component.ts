@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {UserService} from '../user.service';
 import {RestRequestService} from '../rest-request.service';
+import {formArrayNameProvider} from '@angular/forms/src/directives/reactive_directives/form_group_name';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-negotiation-requests',
@@ -62,5 +64,35 @@ export class NegotiationRequestsComponent implements OnInit {
 
     return false
   }
+
+  accept_negotiation_request(request_id) {
+    console.log(request_id)
+    const formData = new FormData()
+    formData.append("accepted","true")
+
+    this.restRequestService.patchRequest(undefined, formData, "accept_negotiation_request" , request_id).subscribe(
+      response => {
+        console.log(response)
+      }, error => {
+        console.log(error)
+      }
+    )
+  }
+
+  reject_negotiation_request(request_id) {
+    console.log(request_id)
+    const formData = new FormData()
+    formData.append("rejected","true")
+
+    this.restRequestService.patchRequest(undefined, formData, "accept_negotiation_request" , request_id).subscribe(
+      response => {
+        console.log(response)
+      }, error => {
+        console.log(error)
+      }
+    )
+  }
+
+
 
 }

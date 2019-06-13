@@ -25,6 +25,8 @@
       <div>Their request message to you: <br>{{received_request.request_body}}</div>
       <div>Sent on: {{received_request.sent_on}}</div><br>
       <div>Request status: {{received_request.accepted}}</div>
+      <button (click)="accept_negotiation_request(received_request.request_id)">Accept</button>
+      <button (click)="reject_negotiation_request(received_request.request_id)">Reject</button>
     </div>
 
   </div>

@@ -53,18 +53,15 @@ export class ContactSellerDialogComponent implements OnInit {
                this.reason = response["reason"]
              } else {
                this.send_succeded = true
+               setTimeout(
+                 () => { this.dialogRef.close();}, 2000
+               );
              }
           },
           error => {
-            console.log(error)
+            console.log(error);
           }
-      )
-
-    if (this.send_succeded) {
-      setTimeout(
-        () => { this.dialogRef.close() }, 2000
-      )
-    }
+      );
 
   }
 }

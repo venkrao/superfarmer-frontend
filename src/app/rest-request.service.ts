@@ -77,6 +77,20 @@ export class RestRequestService {
     },
   }
 
+  putEndPoints = {
+    "accept_negotiation_request": {
+      endpoint: "http://127.0.0.1:8000/negotiationrequestitem",
+      urlparams: undefined
+    }
+  }
+
+  patchEndPoints = {
+    "accept_negotiation_request": {
+      endpoint: "http://127.0.0.1:8000/negotiationrequestitem",
+      urlparams: undefined
+    }
+  }
+
   public postRequest(httpRequestHeaders:any, httpRequestData:any, httpEndPoint:any) {
 
    console.log("sending post request to: " + httpEndPoint + ": " + this.postEndpoints[httpEndPoint])
@@ -122,6 +136,35 @@ export class RestRequestService {
 
     console.log("composed request headers " + JSON.stringify(httpRequestHeaders))
     return this.http.delete(this.endpoint, httpRequestHeaders)
+  }
+
+  public putRequest(httpRequestHeaders:any, httpRequestData:any, httpEndPoint:any, urlParam:any)  {
+
+    if (urlParam != undefined) {
+      this.endpoint = this.putEndPoints[httpEndPoint]["endpoint"] + "/" + urlParam + "/"
+    } else {
+      this.endpoint = this.putEndPoints[httpEndPoint]["endpoint"] + "/"
+    }
+
+    console.log("sending put request to: " + httpEndPoint + ": " + this.endpoint)
+
+    console.log("composed request headers " + JSON.stringify(httpRequestHeaders))
+    return this.http.put(this.endpoint, httpRequestData, httpRequestHeaders)
+  }
+
+
+  public patchRequest(httpRequestHeaders:any, httpRequestData:any, httpEndPoint:any, urlParam:any)  {
+
+    if (urlParam != undefined) {
+      this.endpoint = this.patchEndPoints[httpEndPoint]["endpoint"] + "/" + urlParam + "/"
+    } else {
+      this.endpoint = this.patchEndPoints[httpEndPoint]["endpoint"] + "/"
+    }
+
+    console.log("sending patch request to: " + httpEndPoint + ": " + this.endpoint)
+
+    console.log("composed request headers " + JSON.stringify(httpRequestHeaders))
+    return this.http.patch(this.endpoint, httpRequestData, httpRequestHeaders)
   }
 
 }
