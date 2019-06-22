@@ -35,7 +35,12 @@ export class MeComponent implements OnInit {
 
   myNegotiationRequests() {
     this.router.navigate(["me/negotiationrequests"])
-    return false
+    return false;
+  }
+
+  myprofile() {
+    this.router.navigate(["me/profile"]);
+    return false;
   }
 
 }

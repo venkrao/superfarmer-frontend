@@ -40,6 +40,7 @@ import { ContactSellerDialogComponent } from './contact-seller-dialog/contact-se
 import { MyhomepageComponent } from './myhomepage/myhomepage.component';
 import { MypopmodalComponent } from './mypopmodal/mypopmodal.component';
 import { NegotiationRequestsComponent } from './negotiation-requests/negotiation-requests.component';
+import { MyprofileComponent } from './myprofile/myprofile.component';
 
 // Configs
 export function getAuthServiceConfigs() {
@@ -82,6 +83,8 @@ export function getAuthServiceConfigs() {
     MypopmodalComponent,
 
     NegotiationRequestsComponent,
+
+    MyprofileComponent,
 
   ],
   imports: [

@@ -15,6 +15,7 @@ import { HellothereComponent } from './hellothere/hellothere.component'
 import { TransporterComponent } from './transporter/transporter.component'
 import { MyhomepageComponent } from './myhomepage/myhomepage.component'
 import {NegotiationRequestsComponent} from './negotiation-requests/negotiation-requests.component';
+import {MyprofileComponent} from './myprofile/myprofile.component';
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -32,7 +33,7 @@ const routes: Routes = [
     { path: 'transporter', component: TransporterComponent },
     { path: 'myhomepage', component: MyhomepageComponent},
     { path: 'me/negotiationrequests', component: NegotiationRequestsComponent},
-
+    { path: 'me/profile', component: MyprofileComponent},
 ];
 
 @NgModule({

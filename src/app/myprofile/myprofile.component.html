@@ -1,0 +1,139 @@
+<div *ngIf="profile_exists">
+  <div>About me: {{about_me}}</div>
+  <div>address: {{address}}</div>
+  <div>city: {{city}}</div>
+  <div>country: {{country}}</div>
+  <div>phone_primary: {{phone_primary}}</div>
+  <div>email_address: {{email_address}}</div>
+  <div>name: {{name}}</div>
+
+  <a href="#" (click)="show_update_profile()">Update profile</a>
+  <div *ngIf="show_update_profile_form">
+
+      <div class="container">
+        <h4>You can update your profile here. <br> <br> </h4>
+        Welcome {{userService.getUsername()}}!<br />
+
+        <form #userProfileUpdationForm="ngForm" id="userProfileUpdationForm">
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input
+              required
+              ngModel
+              name="address"
+              type="text"
+              id="address"
+              class="form-control"
+              [(ngModel)]="address"
+              >
+            <div class="alert alert-danger" *ngIf="address.touched && !address.valid">
+              Address is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="about_me">About me</label>
+            <input
+              required
+              ngModel
+              name="about_me"
+              type="text"
+              id="about_me"
+              class="form-control"
+              [(ngModel)]="about_me"
+            >
+            <div class="alert alert-danger" *ngIf="about_me.touched && !about_me.valid">
+              About me required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="city">City</label>
+            <input
+              required
+              ngModel
+              type="text"  id="city" name="city" class="form-control" placeholder="City"
+              [(ngModel)]="city">
+            <div class="alert alert-danger" *ngIf="city.touched && !city.valid">
+              City is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="state">State</label>
+            <input
+              required
+              ngModel
+              type="text" id="state" name="state" class="form-control"
+              [(ngModel)]="state"
+              placeholder="State">
+            <div class="alert alert-danger" *ngIf="state.touched && !state.valid">
+              State is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input
+              required
+              ngModel
+              type="text" id="country" name="country" class="form-control"
+              [(ngModel)]="country"
+              placeholder="Country">
+            <div class="alert alert-danger" *ngIf="country.touched && !country.valid">
+              Country is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone_primary">Phone number(Primary)</label>
+            <input
+              required
+              ngModel
+              type="text" id="phone_primary_new" name="phone_primary_new"
+              class="form-control" placeholder="Phone number"
+              [(ngModel)]="phone_primary_new">
+            <div class="alert alert-danger" *ngIf="phone_primary_new.touched && !phone_primary_new.valid">
+              Telephone number is required.
+            </div>
+          </div>
+
+          <button (click)="updateProfile(userProfileUpdationForm)" class="btn btn-succes"
+                  type="submit" [disabled]="!userProfileUpdationForm.form.valid">Update profile</button>
+        </form>
+
+
+        To <a href="/home">Home</a>
+      </div>
+
+  </div>
+
+
+
+  <div *ngIf="otp_exists">
+    <div>OTP exists for {{phone_primary_new}} Please enter to update phone number.</div>
+    <form #verifyOTPForm="ngForm" id="verifyOTP">
+      <div class="form-group">
+        <label for="otp">OTP</label>
+        <input
+          required
+          ngModel
+          name="otp"
+          type="text"
+          id="otp"
+          class="form-control"
+          #otp="ngModel">
+        <div class="alert alert-danger" *ngIf="otp.touched && !otp.valid">
+          Please enter the OTP that was sent to your mobile.
+        </div>
+        <button (click)="verify_otp(verifyOTPForm, phone_primary_new)" class="btn btn-succes"
+                type="submit" [disabled]="!verifyOTPForm.form.valid">Validate OTP</button>
+
+
+
+      </div>
+    </form>
+
+  </div>
+  <p *ngIf="results">Result: {{ results }}</p>
+  <p *ngIf="error">Error: {{ error }}</p>

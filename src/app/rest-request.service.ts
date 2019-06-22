@@ -24,7 +24,8 @@ export class RestRequestService {
     "register_as_seller": "http://127.0.0.1:8000/register-as-seller/",
     "mylistings": "http://127.0.0.1:8000/me/listings/",
     "listings_by_category": "http://127.0.0.1:8000/listingsbycategory/",
-    "initiate_negotiation": "http://127.0.0.1:8000/negotiationrequest/"
+    "initiate_negotiation": "http://127.0.0.1:8000/negotiationrequest/",
+    "verify_phone": "http://127.0.0.1:8000/verify_otp/",
     }
 
   getEndPoints = {
@@ -64,6 +65,10 @@ export class RestRequestService {
       endpoint: "http://127.0.0.1:8000/me/negotiationrequests/received",
       urlparams: undefined
     },
+    "my_profile" : {
+      endpoint: "http://127.0.0.1:8000/me/profile",
+      urlparams: undefined
+    },
   }
 
   deleteEndPoints = {
@@ -79,14 +84,14 @@ export class RestRequestService {
 
   putEndPoints = {
     "accept_negotiation_request": {
-      endpoint: "http://127.0.0.1:8000/negotiationrequestitem",
+      endpoint: "http://127.0.0.1:8000/negotiationrequest",
       urlparams: undefined
     }
   }
 
   patchEndPoints = {
     "accept_negotiation_request": {
-      endpoint: "http://127.0.0.1:8000/negotiationrequestitem",
+      endpoint: "http://127.0.0.1:8000/negotiationrequest",
       urlparams: undefined
     }
   }
